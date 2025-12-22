@@ -1,0 +1,52 @@
+* {
+  font-family: "Liberation Sans", sans-serif;
+}
+
+body, #calculator-area, #display, #buttons-area, .buttons-row {
+  display: flex;
+}
+
+body {
+  justify-content: center;
+}
+
+#calculator-area, #buttons-area {
+  flex-direction: column;
+}
+
+#calculator-area, #display {
+  border: solid 1px;
+}
+
+#calculator-area {
+  width: 250px;
+  height: 375px;
+  padding: 10px;
+  gap: 10px;
+}
+
+#display {
+  padding: 10px;
+  font-size: 28px;
+  justify-content: right;
+  align-items: center;
+  flex-grow: 1;
+}
+
+#buttons-area, .buttons-row {
+  gap: 5px;
+}
+
+#buttons-area {
+  flex-grow: 5;
+}
+
+.buttons-row {
+  flex: 1 0 0;
+}
+
+button {
+  font-size: 20px;
+  padding: 0px;
+  flex: 1 0 0;
+}
