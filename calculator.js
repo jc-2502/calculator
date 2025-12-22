@@ -32,28 +32,23 @@ function operate (operator, num1, num2) {
 }
 
 function addEventListenersToButtons() {
-  const buttons = document.querySelectorAll("button");
+  const digitButtons = document.querySelectorAll(".digit");
 
-  buttons.forEach(button => button.addEventListener("click", displayInput));
+  digitButtons.forEach(button => button.addEventListener("click", displayClickedDigit));
 }
 
-function displayInput(event) {
+function displayClickedDigit(event) {
+  const clickedDigit = event.target.textContent;
   const display = document.querySelector("#display");
-  const clickedButton = event.target;
-  let clickedNumber;
 
-  if (clickedButton.classList.contains("number-button")) {
-    clickedNumber = clickedButton.textContent;
-
-    if (num1) {
-      num1 += clickedNumber;
-    } else if (clickedNumber !== "0") {
-      // num1 doesn't have value
-      num1 = clickedNumber;
-    }
-
-    if (num1) display.textContent = num1;
+  if (num1) {
+    num1 += clickedDigit;
+  } else if (clickedDigit !== "0") {
+    // num1 doesn't have value
+    num1 = clickedDigit;
   }
+
+  if (num1) display.textContent = num1;
 }
 
 addEventListenersToButtons();
