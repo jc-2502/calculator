@@ -2,7 +2,7 @@
   font-family: "Liberation Sans", sans-serif;
 }
 
-body, #calculator-area, #display, #buttons-area, .buttons-row {
+body, #calculator-area, #display, #button-area, .button-row {
   display: flex;
 }
 
@@ -10,7 +10,7 @@ body {
   justify-content: center;
 }
 
-#calculator-area, #buttons-area {
+#calculator-area, #button-area {
   flex-direction: column;
 }
 
@@ -33,15 +33,15 @@ body {
   flex-grow: 1;
 }
 
-#buttons-area, .buttons-row {
+#button-area, .button-row {
   gap: 5px;
 }
 
-#buttons-area {
+#button-area {
   flex-grow: 5;
 }
 
-.buttons-row {
+.button-row {
   flex: 1 0 0;
 }
 
