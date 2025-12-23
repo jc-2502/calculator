@@ -53,4 +53,15 @@ function displayClickedDigit(event) {
   if (num2) display.textContent = num2;
 }
 
+function handleClickOnOperator(event) {
+  operator = event.target.id;
+
+  moveCompleteNumberToNum1();
+}
+
+function moveCompleteNumberToNum1() {
+  num1 = num2;
+  num2 = undefined;
+}
+
 addEventListenersToButtons();
