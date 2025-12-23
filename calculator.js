@@ -41,7 +41,6 @@ function addEventListenersToButtons() {
 
 function displayClickedDigit(event) {
   const clickedDigit = event.target.textContent;
-  const display = document.querySelector("#display");
 
   if (num2String) {
     num2String += clickedDigit;
@@ -50,7 +49,12 @@ function displayClickedDigit(event) {
     num2String = clickedDigit;
   }
 
-  if (num2String) display.textContent = num2String;
+  if (num2String) updateDisplay(num2String);
+}
+
+function updateDisplay(value) {
+  const display = document.querySelector("#display");
+  display.textContent = value;
 }
 
 function handleClickOnOperator(event) {
