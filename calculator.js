@@ -54,14 +54,24 @@ function displayClickedDigit(event) {
 }
 
 function handleClickOnOperator(event) {
-  operator = event.target.id;
+  if (num1String && num2String) {
+    num1 = Number(num1String);
+    num2 = Number(num2String);
+    let result = operate(operator, num1, num2);
+    // console.log(`${num1} ${operator} ${num2} ${result}`);
+    updateNum1AndNum2Strings(result, undefined);
+    // console.log(`${num1String} ${num2String}`);
+  } else if (num2String) {
+    updateNum1AndNum2Strings(num2String, undefined);
+    // console.log(`${num1String} ${num2String}`);
+  }
 
-  moveCompleteNumberToNum1();
+  operator = event.target.id;
 }
 
-function moveCompleteNumberToNum1() {
-  num1String = num2String;
-  num2String = undefined;
+function updateNum1AndNum2Strings(value1, value2) {
+  num1String = value1;
+  num2String = value2;
 }
 
 addEventListenersToButtons();
