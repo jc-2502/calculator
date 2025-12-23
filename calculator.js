@@ -62,6 +62,7 @@ function handleClickOnOperator(event) {
     num1 = Number(num1String);
     num2 = Number(num2String);
     let result = operate(operator, num1, num2);
+    updateDisplay(result);
     // console.log(`${num1} ${operator} ${num2} ${result}`);
     updateNum1AndNum2Strings(result, undefined);
     // console.log(`${num1String} ${num2String}`);
