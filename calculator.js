@@ -1,6 +1,6 @@
-let num1;
+let num1String;
 let operator;
-let num2;
+let num2String;
 
 function add (num1, num2) {
   return num1 + num2;
@@ -43,14 +43,14 @@ function displayClickedDigit(event) {
   const clickedDigit = event.target.textContent;
   const display = document.querySelector("#display");
 
-  if (num2) {
-    num2 += clickedDigit;
+  if (num2String) {
+    num2String += clickedDigit;
   } else if (clickedDigit !== "0") {
-    // num2 doesn't have value
-    num2 = clickedDigit;
+    // num2String doesn't have value
+    num2String = clickedDigit;
   }
 
-  if (num2) display.textContent = num2;
+  if (num2String) display.textContent = num2String;
 }
 
 function handleClickOnOperator(event) {
@@ -60,8 +60,8 @@ function handleClickOnOperator(event) {
 }
 
 function moveCompleteNumberToNum1() {
-  num1 = num2;
-  num2 = undefined;
+  num1String = num2String;
+  num2String = undefined;
 }
 
 addEventListenersToButtons();
