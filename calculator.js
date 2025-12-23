@@ -33,22 +33,24 @@ function operate (operator, num1, num2) {
 
 function addEventListenersToButtons() {
   const digitButtons = document.querySelectorAll(".digit");
+  const operatorButtons = document.querySelectorAll(".operator");
 
   digitButtons.forEach(button => button.addEventListener("click", displayClickedDigit));
+  operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
 }
 
 function displayClickedDigit(event) {
   const clickedDigit = event.target.textContent;
   const display = document.querySelector("#display");
 
-  if (num1) {
-    num1 += clickedDigit;
+  if (num2) {
+    num2 += clickedDigit;
   } else if (clickedDigit !== "0") {
-    // num1 doesn't have value
-    num1 = clickedDigit;
+    // num2 doesn't have value
+    num2 = clickedDigit;
   }
 
-  if (num1) display.textContent = num1;
+  if (num2) display.textContent = num2;
 }
 
 addEventListenersToButtons();
