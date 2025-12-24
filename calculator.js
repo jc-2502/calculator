@@ -18,17 +18,28 @@ function divide (num1, num2) {
   return num1 / num2;
 };
 
-function operate (operator, num1, num2) {
+function operate(operator, num1String, num2String) {
+  const num1 = Number(num1String);
+  const num2 = Number(num2String);
+  let result;
+
   switch (operator) {
     case "add":
-      return add(num1, num2);
+      result = add(num1, num2);
+      break;
     case "subtract":
-      return subtract(num1, num2);
+      result = subtract(num1, num2);
+      break;
     case "multiply":
-      return multiply(num1, num2);
+      result = multiply(num1, num2);
+      break;
     case "divide":
-      return divide(num1, num2);
+      result = divide(num1, num2);
+      break;
   }
+
+  updateDisplay(result);
+  return result;
 }
 
 function addEventListenersToButtons() {
@@ -60,10 +71,7 @@ function updateDisplay(value) {
 
 function handleClickOnOperator(event) {
   if (num1String !== "" && num2String !== "") {
-    num1 = Number(num1String);
-    num2 = Number(num2String);
-    let result = operate(operator, num1, num2);
-    updateDisplay(result);
+    const result = operate(operator, num1String, num2String);
     updateNum1AndNum2Strings(result, "");
   } else if (num2String) {
     updateNum1AndNum2Strings(num2String, "");
@@ -74,10 +82,7 @@ function handleClickOnOperator(event) {
 
 function handleClickOnEquals() {
   if (num1String !== "" && num2String !== "") {
-    num1 = Number(num1String);
-    num2 = Number(num2String);
-    let result = operate(operator, num1, num2);
-    updateDisplay(result);
+    operate(operator, num1String, num2String);
   }
 
   updateNum1AndNum2Strings("", "");
