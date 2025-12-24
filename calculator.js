@@ -47,11 +47,13 @@ function addEventListenersToButtons() {
   const operatorButtons = document.querySelectorAll(".operator");
   const equalsButton = document.querySelector("#equals");
   const clearButton = document.querySelector("#clear");
+  const allClearButton = document.querySelector("#all-clear");
 
   digitButtons.forEach(button => button.addEventListener("click", displayClickedDigit));
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleClickOnEquals);
   clearButton.addEventListener("click", handleClickOnClear);
+  allClearButton.addEventListener("click", handleClickOnAllClear);
 }
 
 function displayClickedDigit(event) {
@@ -92,6 +94,12 @@ function handleClickOnEquals() {
 
 function handleClickOnClear() {
   num2String = "";
+  updateDisplay("0");
+}
+
+function handleClickOnAllClear() {
+  updateNum1AndNum2Strings("", "");
+  operator = "";
   updateDisplay("0");
 }
 
