@@ -1,6 +1,6 @@
-let num1String;
+let num1String = "";
 let operator;
-let num2String;
+let num2String = "";
 
 function add (num1, num2) {
   return num1 + num2;
@@ -42,10 +42,9 @@ function addEventListenersToButtons() {
 function displayClickedDigit(event) {
   const clickedDigit = event.target.textContent;
 
-  if (num2String) {
+  if (num2String !== "" && !(num2String === "0" && clickedDigit === "0")) {
     num2String += clickedDigit;
-  } else if (clickedDigit !== "0") {
-    // num2String doesn't have value
+  } else if (num2String === "") {
     num2String = clickedDigit;
   }
 
@@ -58,17 +57,14 @@ function updateDisplay(value) {
 }
 
 function handleClickOnOperator(event) {
-  if (num1String && num2String) {
+  if (num1String !== "" && num2String !== "") {
     num1 = Number(num1String);
     num2 = Number(num2String);
     let result = operate(operator, num1, num2);
     updateDisplay(result);
-    // console.log(`${num1} ${operator} ${num2} ${result}`);
-    updateNum1AndNum2Strings(result, undefined);
-    // console.log(`${num1String} ${num2String}`);
+    updateNum1AndNum2Strings(result, "");
   } else if (num2String) {
-    updateNum1AndNum2Strings(num2String, undefined);
-    // console.log(`${num1String} ${num2String}`);
+    updateNum1AndNum2Strings(num2String, "");
   }
 
   operator = event.target.id;
