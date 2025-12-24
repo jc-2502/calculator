@@ -46,12 +46,14 @@ function addEventListenersToButtons() {
   const digitButtons = document.querySelectorAll(".digit");
   const operatorButtons = document.querySelectorAll(".operator");
   const equalsButton = document.querySelector("#equals");
+  const backButton = document.querySelector("#back");
   const clearButton = document.querySelector("#clear");
   const allClearButton = document.querySelector("#all-clear");
 
   digitButtons.forEach(button => button.addEventListener("click", displayClickedDigit));
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleClickOnEquals);
+  backButton.addEventListener("click", handleClickOnBack);
   clearButton.addEventListener("click", handleClickOnClear);
   allClearButton.addEventListener("click", handleClickOnAllClear);
 }
@@ -90,6 +92,18 @@ function handleClickOnEquals() {
   }
 
   updateNum1AndNum2Strings("", "");
+}
+
+function handleClickOnBack() {
+  if (num2String !== "") {
+    num2String = num2String.slice(0, -1);
+  }
+
+  if (num2String) {
+    updateDisplay(num2String);
+  } else {
+    updateDisplay("0");
+  }
 }
 
 function handleClickOnClear() {
