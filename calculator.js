@@ -89,6 +89,8 @@ function handleClickOnOperator(event) {
 function handleClickOnEquals() {
   if (num1String !== "" && num2String !== "") {
     operate();
+  } else if (num1String !== "" && num2String === "") {
+    updateDisplay(num1String);
   }
 
   updateNum1AndNum2Strings("", "");
