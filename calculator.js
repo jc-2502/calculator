@@ -34,9 +34,11 @@ function operate (operator, num1, num2) {
 function addEventListenersToButtons() {
   const digitButtons = document.querySelectorAll(".digit");
   const operatorButtons = document.querySelectorAll(".operator");
+  const equalsButton = document.querySelector("#equals");
 
   digitButtons.forEach(button => button.addEventListener("click", displayClickedDigit));
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
+  equalsButton.addEventListener("click", handleClickOnEquals);
 }
 
 function displayClickedDigit(event) {
@@ -68,6 +70,17 @@ function handleClickOnOperator(event) {
   }
 
   operator = event.target.id;
+}
+
+function handleClickOnEquals() {
+  if (num1String !== "" && num2String !== "") {
+    num1 = Number(num1String);
+    num2 = Number(num2String);
+    let result = operate(operator, num1, num2);
+    updateDisplay(result);
+  }
+
+  updateNum1AndNum2Strings("", "");
 }
 
 function updateNum1AndNum2Strings(value1, value2) {
