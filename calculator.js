@@ -18,7 +18,7 @@ function divide (num1, num2) {
   return num1 / num2;
 };
 
-function operate(operator, num1String, num2String) {
+function operate() {
   const num1 = Number(num1String);
   const num2 = Number(num2String);
   let result;
@@ -71,7 +71,7 @@ function updateDisplay(value) {
 
 function handleClickOnOperator(event) {
   if (num1String !== "" && num2String !== "") {
-    const result = operate(operator, num1String, num2String);
+    const result = operate();
     updateNum1AndNum2Strings(result, "");
   } else if (num2String) {
     updateNum1AndNum2Strings(num2String, "");
@@ -82,7 +82,7 @@ function handleClickOnOperator(event) {
 
 function handleClickOnEquals() {
   if (num1String !== "" && num2String !== "") {
-    operate(operator, num1String, num2String);
+    operate();
   }
 
   updateNum1AndNum2Strings("", "");
