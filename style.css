@@ -31,6 +31,7 @@ body {
   justify-content: right;
   align-items: center;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 #button-area, .button-row {
