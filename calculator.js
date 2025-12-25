@@ -39,7 +39,7 @@ function operate() {
   }
 
   updateDisplay(result);
-  return result;
+  updateNum1AndNum2Strings(result, "");
 }
 
 function addEventListenersToButtons() {
@@ -61,6 +61,8 @@ function addEventListenersToButtons() {
 function displayClickedDigit(event) {
   const clickedDigit = event.target.textContent;
 
+  checkIfClickedOnDigitAfterEquals();
+
   if (num2String !== "" && !(num2String === "0" && clickedDigit === "0")) {
     num2String += clickedDigit;
   } else if (num2String === "") {
@@ -77,8 +79,7 @@ function updateDisplay(value) {
 
 function handleClickOnOperator(event) {
   if (num1String !== "" && num2String !== "") {
-    const result = operate();
-    updateNum1AndNum2Strings(result, "");
+    operate();
   } else if (num2String) {
     updateNum1AndNum2Strings(num2String, "");
   }
@@ -93,7 +94,13 @@ function handleClickOnEquals() {
     updateDisplay(num1String);
   }
 
-  updateNum1AndNum2Strings("", "");
+  operator = "";
+}
+
+function checkIfClickedOnDigitAfterEquals() {
+  if (operator === "" && num1String !== "") {
+    num1String = "";
+  }
 }
 
 function handleClickOnBack() {
