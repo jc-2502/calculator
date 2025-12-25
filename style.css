@@ -50,3 +50,7 @@ button {
   padding: 0px;
   flex: 1 0 0;
 }
+
+#back {
+  font-size: 26px;
+}
