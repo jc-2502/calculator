@@ -50,7 +50,7 @@ function addEventListenersToButtons() {
   const clearButton = document.querySelector("#clear");
   const allClearButton = document.querySelector("#all-clear");
 
-  digitButtons.forEach(button => button.addEventListener("click", displayClickedDigit));
+  digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleClickOnEquals);
   backButton.addEventListener("click", handleClickOnBack);
@@ -58,7 +58,7 @@ function addEventListenersToButtons() {
   allClearButton.addEventListener("click", handleClickOnAllClear);
 }
 
-function displayClickedDigit(event) {
+function handleClickOnDigit(event) {
   const clickedDigit = event.target.textContent;
 
   checkIfClickedOnDigitAfterEquals();
