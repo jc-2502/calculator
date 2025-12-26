@@ -72,18 +72,6 @@ function handleClickOnDigit(event) {
   if (num2String) updateDisplay(num2String, false);
 }
 
-function updateDisplay(value, shorten = true) {
-  const display = document.querySelector("#display");
-  if (value >= 1e14 && shorten) {
-    // if value is 15 or more digits, express as scientific notation
-    // with 9 decimals i.e. #.#########e+#
-    const shortened = Number(value).toPrecision(10);
-    display.textContent = shortened;
-  } else {
-    display.textContent = value;
-  }
-}
-
 function handleClickOnOperator(event) {
   if (num1String !== "" && num2String !== "") {
     operate();
@@ -139,6 +127,19 @@ function handleClickOnAllClear() {
 function updateNum1AndNum2Strings(value1, value2) {
   num1String = value1;
   num2String = value2;
+}
+
+
+function updateDisplay(value, shorten = true) {
+  const display = document.querySelector("#display");
+  if (value >= 1e14 && shorten) {
+    // if value is 15 or more digits, express as scientific notation
+    // with 9 decimals i.e. #.#########e+#
+    const shortened = Number(value).toPrecision(10);
+    display.textContent = shortened;
+  } else {
+    display.textContent = value;
+  }
 }
 
 addEventListenersToButtons();
