@@ -132,9 +132,9 @@ function updateNum1AndNum2Strings(value1, value2) {
 
 function updateDisplay(value, shorten = true) {
   const display = document.querySelector("#display");
-  if (value >= 1e14 && shorten) {
-    // if value is 15 or more digits, express as scientific notation
-    // with 9 decimals i.e. #.#########e+#
+  if (shorten && (value >= 1e14 || (value > 1e13 && value % 1 != 0))) {
+    // if value is 15 or more digits, or 14 'integer part' digits before decimal,
+    // express as scientific notation with 9 decimals i.e. #.#########e+#
     const shortened = Number(value).toPrecision(10);
     display.textContent = shortened;
   } else {
