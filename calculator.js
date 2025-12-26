@@ -137,6 +137,9 @@ function updateDisplay(value, shorten = true) {
     // express as scientific notation with 9 decimals i.e. #.#########e+#
     const shortened = Number(value).toPrecision(10);
     display.textContent = shortened;
+  } else if (shorten && value % 1 != 0 && value > 1) {
+    const shortened = parseFloat(Number(value).toPrecision(14));
+    display.textContent = shortened;
   } else {
     display.textContent = value;
   }
