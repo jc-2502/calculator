@@ -100,6 +100,8 @@ function handleClickOnEquals() {
     operate();
   } else if (num1String !== "" && num2String === "") {
     updateDisplay(num1String);
+  } else if (num1String === "" && num2String !== "") {
+    updateDisplay(num2String);
   }
 
   operator = "";
