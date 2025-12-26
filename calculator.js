@@ -132,17 +132,22 @@ function updateNum1AndNum2Strings(value1, value2) {
 
 function updateDisplay(value, shorten = true) {
   const display = document.querySelector("#display");
+
   if (shorten && (value >= 1e14 || (value > 1e13 && value % 1 != 0))) {
     // if value is 15 or more digits, or 14 'integer part' digits before decimal,
     // express as scientific notation with 9 decimals i.e. #.#########e+#
-    const shortened = Number(value).toPrecision(10);
-    display.textContent = shortened;
-  } else if (shorten && value % 1 != 0 && value > 1) {
-    const shortened = parseFloat(Number(value).toPrecision(14));
-    display.textContent = shortened;
-  } else {
-    display.textContent = value;
+    value = Number(value).toPrecision(10);
+  } else if (shorten && value % 1 != 0) {
+    // if value has decimals
+      if (value > 1) {
+        value = parseFloat(Number(value).toPrecision(14));
+      } else if (value < -1) {
+        value = parseFloat(Number(value).toPrecision(13));
+      }
   }
+
+  display.textContent = value;
+  // console.log(value);
 }
 
 addEventListenersToButtons();
