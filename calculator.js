@@ -69,12 +69,19 @@ function handleClickOnDigit(event) {
     num2String = clickedDigit;
   }
 
-  if (num2String) updateDisplay(num2String);
+  if (num2String) updateDisplay(num2String, false);
 }
 
-function updateDisplay(value) {
+function updateDisplay(value, shorten = true) {
   const display = document.querySelector("#display");
-  display.textContent = value;
+  if (value >= 1e14 && shorten) {
+    // if value is 15 or more digits, express as scientific notation
+    // with 9 decimals i.e. #.#########e+#
+    const shortened = Number(value).toPrecision(10);
+    display.textContent = shortened;
+  } else {
+    display.textContent = value;
+  }
 }
 
 function handleClickOnOperator(event) {
