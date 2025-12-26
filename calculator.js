@@ -88,6 +88,7 @@ function handleClickOnOperator(event) {
   if (num1String !== "" && num2String !== "") {
     operate();
   } else if (num2String) {
+    updateDisplay(num2String);
     updateNum1AndNum2Strings(num2String, "");
   }
 
