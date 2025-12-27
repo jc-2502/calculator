@@ -15,7 +15,8 @@ function multiply (num1, num2) {
 };
 
 function divide (num1, num2) {
-  return num1 / num2;
+  const result = num1 / num2;
+  return (result === Infinity) ? "error: division by 0" : result;
 };
 
 function operate() {
@@ -39,7 +40,12 @@ function operate() {
   }
 
   updateDisplay(result);
-  updateNum1AndNum2Strings(result, "");
+
+  if (result === "error: division by 0") {
+    updateNum1AndNum2Strings("", "");
+  } else {
+    updateNum1AndNum2Strings(result, "");
+  }
 }
 
 function addEventListenersToButtons() {
