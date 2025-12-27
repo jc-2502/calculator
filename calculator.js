@@ -132,22 +132,28 @@ function updateNum1AndNum2Strings(value1, value2) {
 
 function updateDisplay(value, shorten = true) {
   const display = document.querySelector("#display");
-
-  if (shorten && (value >= 1e14 || (value > 1e13 && value % 1 != 0))) {
-    // if value is 15 or more digits, or 14 'integer part' digits before decimal,
-    // express as scientific notation with 9 decimals i.e. #.#########e+#
-    value = Number(value).toPrecision(10);
-  } else if (shorten && value % 1 != 0) {
-    // if value has decimals
-      if (value > 1) {
-        value = parseFloat(Number(value).toPrecision(14));
-      } else if (value < -1) {
-        value = parseFloat(Number(value).toPrecision(13));
-      }
+  if (shorten) {
+    if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
+      // if value is 15 or more digits, or 14 'integer part' digits before decimal,
+      // express as scientific notation with 9 decimals i.e. #.#########e+#
+      value = Number(value).toPrecision(10);
+    } else if (value % 1 != 0) {
+      // if value has decimals
+        if (value > 1) {
+          value = parseFloat(Number(value).toPrecision(14));
+        } else if (value < -1) {
+          value = parseFloat(Number(value).toPrecision(13));
+        } else if (value > 0) {
+          value = parseFloat(Number(value).toFixed(13));
+        } else if (value < 0) {
+          value = parseFloat(Number(value).toFixed(12));
+        }
+        // parseFloat handles scientific notation for exponents of -7 or lower
+        // (6 0s before first significant digit)
+    }
   }
 
   display.textContent = value;
-  // console.log(value);
 }
 
 addEventListenersToButtons();
