@@ -27,7 +27,7 @@ body {
 
 #display-container {
   padding: 10px;
-  flex-grow: 1;
+  height: 50px;
 }
 
 #display {
@@ -50,7 +50,7 @@ body {
 }
 
 #button-area {
-  flex-grow: 5;
+  flex-grow: 1;
 }
 
 .button-row {
