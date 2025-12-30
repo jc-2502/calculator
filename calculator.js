@@ -164,6 +164,10 @@ function updateDisplay(value, shorten = true) {
   }
 
   display.textContent = value;
+
+  if (value === "error: division by 0") {
+    display.classList.add("display-error-msg");
+  }
 }
 
 addEventListenersToButtons();

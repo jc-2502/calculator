@@ -31,11 +31,18 @@ body {
 }
 
 #display {
-  font-size: 28px;
   flex: 1;
   justify-content: right;
   align-items: center;
   overflow: hidden;
+}
+
+.display-normal {
+  font-size: 28px;
+}
+
+.display-error-msg {
+  font-size: 26px;
 }
 
 #button-area, .button-row {
