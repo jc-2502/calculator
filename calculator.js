@@ -95,6 +95,11 @@ function handleClickOnDecimal() {
   decimalButton.removeEventListener("click", handleClickOnDecimal);
 }
 
+function addEventListenerToDecimalButton() {
+  const decimalButton = document.querySelector("#decimal");
+  decimalButton.addEventListener("click", handleClickOnDecimal);
+}
+
 function handleClickOnOperator(event) {
   if (num1String !== "" && num2String !== "") {
     operate();
@@ -104,6 +109,7 @@ function handleClickOnOperator(event) {
   }
 
   operator = event.target.id;
+  addEventListenerToDecimalButton();
 }
 
 function handleClickOnEquals() {
@@ -116,6 +122,7 @@ function handleClickOnEquals() {
   }
 
   operator = "";
+  addEventListenerToDecimalButton();
 }
 
 function checkIfClickedOnDigitAfterEquals() {
@@ -125,7 +132,11 @@ function checkIfClickedOnDigitAfterEquals() {
 }
 
 function handleClickOnBack() {
+
   if (num2String !== "") {
+    if (num2String.at(-1) === ".") {
+      addEventListenerToDecimalButton();
+    }
     num2String = num2String.slice(0, -1);
   }
 
@@ -139,12 +150,14 @@ function handleClickOnBack() {
 function handleClickOnClear() {
   num2String = "";
   updateDisplay("0");
+  addEventListenerToDecimalButton();
 }
 
 function handleClickOnAllClear() {
   updateNum1AndNum2Strings("", "");
   operator = "";
   updateDisplay("0");
+  addEventListenerToDecimalButton();
 }
 
 function updateNum1AndNum2Strings(value1, value2) {
