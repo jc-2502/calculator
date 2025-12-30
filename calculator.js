@@ -163,17 +163,27 @@ function updateDisplay(value, shorten = true) {
     }
   }
 
-  addErrorMsgClassToDisplay(value);
+  if (value === "error: division by 0") {
+    addErrorMsgClassToDisplay();
+  }
 
   display.textContent = value;
 }
 
 function addErrorMsgClassToDisplay(value) {
   const display = document.querySelector("#display");
+  display.classList.add("display-error-msg");
 
-  if (value === "error: division by 0") {
-    display.classList.add("display-error-msg");
-  }
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach(button => button.addEventListener("click", removeErrorMsgClassFromDisplay));
+}
+
+function removeErrorMsgClassFromDisplay() {
+  const display = document.querySelector("#display");
+  display.classList.remove("display-error-msg");
+
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach(button => button.removeEventListener("click", removeErrorMsgClassFromDisplay));
 }
 
 addEventListenersToButtons();
