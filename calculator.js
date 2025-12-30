@@ -163,7 +163,13 @@ function updateDisplay(value, shorten = true) {
     }
   }
 
+  addErrorMsgClassToDisplay(value);
+
   display.textContent = value;
+}
+
+function addErrorMsgClassToDisplay(value) {
+  const display = document.querySelector("#display");
 
   if (value === "error: division by 0") {
     display.classList.add("display-error-msg");
