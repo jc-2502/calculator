@@ -50,6 +50,7 @@ function operate() {
 
 function addEventListenersToButtons() {
   const digitButtons = document.querySelectorAll(".digit");
+  const decimalButton = document.querySelector("#decimal");
   const operatorButtons = document.querySelectorAll(".operator");
   const equalsButton = document.querySelector("#equals");
   const backButton = document.querySelector("#back");
@@ -57,6 +58,7 @@ function addEventListenersToButtons() {
   const allClearButton = document.querySelector("#all-clear");
 
   digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
+  decimalButton.addEventListener("click", handleClickOnDecimal);
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleClickOnEquals);
   backButton.addEventListener("click", handleClickOnBack);
@@ -76,6 +78,21 @@ function handleClickOnDigit(event) {
   }
 
   if (num2String) updateDisplay(num2String, false);
+}
+
+function handleClickOnDecimal() {
+  checkIfClickedOnDigitAfterEquals();
+
+  if (num2String !== "") {
+    num2String += ".";
+  } else if (num2String === "") {
+    num2String = "0.";
+  }
+
+  if (num2String) updateDisplay(num2String, false);
+
+  const decimalButton = document.querySelector("#decimal");
+  decimalButton.removeEventListener("click", handleClickOnDecimal);
 }
 
 function handleClickOnOperator(event) {
