@@ -82,7 +82,7 @@ function handleDigitKey(event) {
 }
 
 function handleDigit(digit) {
-  checkIfClickedOnDigitAfterEquals();
+  checkIfDigitAfterEquals();
 
   if (num2String !== "" && !(num2String === "0" && digit === "0")) {
     num2String += digit;
@@ -94,7 +94,7 @@ function handleDigit(digit) {
 }
 
 function handleClickOnDecimal() {
-  checkIfClickedOnDigitAfterEquals();
+  checkIfDigitAfterEquals();
 
   if (num2String !== "") {
     num2String += ".";
@@ -138,7 +138,7 @@ function handleClickOnEquals() {
   addEventListenerToDecimalButton();
 }
 
-function checkIfClickedOnDigitAfterEquals() {
+function checkIfDigitAfterEquals() {
   if (operator === "" && num1String !== "") {
     num1String = "";
   }
