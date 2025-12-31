@@ -66,15 +66,28 @@ function addEventListenersToButtons() {
   allClearButton.addEventListener("click", handleClickOnAllClear);
 }
 
-function handleClickOnDigit(event) {
-  const clickedDigit = event.target.textContent;
+function addKeyboardEventListeners() {
+  handlers = [handleDigitKey];
+  handlers.forEach(handler => document.addEventListener("keydown", handler));
+}
 
+function handleClickOnDigit(event) {
+  handleDigit(event.target.textContent);
+}
+
+function handleDigitKey(event) {
+  if (['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].includes(event.key)) {
+    handleDigit(event.key);
+  }
+}
+
+function handleDigit(digit) {
   checkIfClickedOnDigitAfterEquals();
 
-  if (num2String !== "" && !(num2String === "0" && clickedDigit === "0")) {
-    num2String += clickedDigit;
+  if (num2String !== "" && !(num2String === "0" && digit === "0")) {
+    num2String += digit;
   } else if (num2String === "") {
-    num2String = clickedDigit;
+    num2String = digit;
   }
 
   if (num2String) updateDisplay(num2String, false);
@@ -217,3 +230,4 @@ function removeErrorMsgClassFromDisplay() {
 }
 
 addEventListenersToButtons();
+addKeyboardEventListeners();
