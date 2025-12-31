@@ -60,14 +60,14 @@ function addEventListenersToButtons() {
   digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
   decimalButton.addEventListener("click", handleDecimal);
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
-  equalsButton.addEventListener("click", handleClickOnEquals);
+  equalsButton.addEventListener("click", handleEquals);
   backButton.addEventListener("click", handleClickOnBack);
   clearButton.addEventListener("click", handleClickOnClear);
   allClearButton.addEventListener("click", handleClickOnAllClear);
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey];
+  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey, handleEqualsKey];
   handlers.forEach(handler => document.addEventListener("keydown", handler));
 }
 
@@ -155,7 +155,13 @@ function handleOperator(operatorWord) {
   addDecimalEventListeners();
 }
 
-function handleClickOnEquals() {
+function handleEqualsKey(event) {
+  if (event.key === "=" || event.key === "Enter") {
+    handleEquals();
+  }
+}
+
+function handleEquals() {
   if (num1String !== "" && num2String !== "") {
     operate();
   } else if (num1String !== "" && num2String === "") {
