@@ -58,7 +58,7 @@ function addEventListenersToButtons() {
   const allClearButton = document.querySelector("#all-clear");
 
   digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
-  decimalButton.addEventListener("click", handleClickOnDecimal);
+  decimalButton.addEventListener("click", handleDecimal);
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleClickOnEquals);
   backButton.addEventListener("click", handleClickOnBack);
@@ -67,7 +67,7 @@ function addEventListenersToButtons() {
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey];
+  handlers = [handleDigitKey, handleDecimalKey];
   handlers.forEach(handler => document.addEventListener("keydown", handler));
 }
 
@@ -93,7 +93,13 @@ function handleDigit(digit) {
   if (num2String) updateDisplay(num2String, false);
 }
 
-function handleClickOnDecimal() {
+function handleDecimalKey(event) {
+  if (event.key === ".") {
+    handleDecimal();
+  }
+}
+
+function handleDecimal() {
   checkIfDigitAfterEquals();
 
   if (num2String !== "") {
@@ -105,12 +111,14 @@ function handleClickOnDecimal() {
   if (num2String) updateDisplay(num2String, false);
 
   const decimalButton = document.querySelector("#decimal");
-  decimalButton.removeEventListener("click", handleClickOnDecimal);
+  decimalButton.removeEventListener("click", handleDecimal);
+  document.removeEventListener("keydown", handleDecimalKey);
 }
 
-function addEventListenerToDecimalButton() {
+function addDecimalEventListeners() {
   const decimalButton = document.querySelector("#decimal");
-  decimalButton.addEventListener("click", handleClickOnDecimal);
+  decimalButton.addEventListener("click", handleDecimal);
+  document.addEventListener("keydown", handleDecimalKey);
 }
 
 function handleClickOnOperator(event) {
@@ -122,7 +130,7 @@ function handleClickOnOperator(event) {
   }
 
   operator = event.target.id;
-  addEventListenerToDecimalButton();
+  addDecimalEventListeners();
 }
 
 function handleClickOnEquals() {
@@ -136,7 +144,7 @@ function handleClickOnEquals() {
   }
 
   operator = "";
-  addEventListenerToDecimalButton();
+  addDecimalEventListeners();
 }
 
 function checkIfDigitAfterEquals() {
@@ -149,7 +157,7 @@ function handleClickOnBack() {
 
   if (num2String !== "") {
     if (num2String.at(-1) === ".") {
-      addEventListenerToDecimalButton();
+      addDecimalEventListeners();
     }
     num2String = num2String.slice(0, -1);
   }
@@ -164,14 +172,14 @@ function handleClickOnBack() {
 function handleClickOnClear() {
   num2String = "";
   updateDisplay("0");
-  addEventListenerToDecimalButton();
+  addDecimalEventListeners();
 }
 
 function handleClickOnAllClear() {
   updateNum1AndNum2Strings("", "");
   operator = "";
   updateDisplay("0");
-  addEventListenerToDecimalButton();
+  addDecimalEventListeners();
 }
 
 function updateNum1AndNum2Strings(value1, value2) {
