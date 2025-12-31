@@ -67,7 +67,7 @@ function addEventListenersToButtons() {
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey, handleDecimalKey];
+  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey];
   handlers.forEach(handler => document.addEventListener("keydown", handler));
 }
 
@@ -122,6 +122,28 @@ function addDecimalEventListeners() {
 }
 
 function handleClickOnOperator(event) {
+  handleOperator(event.target.id);
+}
+
+function handleOperatorKey(event) {
+  switch (event.key) {
+    case "+":
+      handleOperator("add");
+      break;
+    case "-":
+      handleOperator("subtract");
+      break;
+    case "*":
+    case "x":
+      handleOperator("multiply");
+      break;
+    case "/":
+      handleOperator("divide");
+      break;
+  }
+}
+
+function handleOperator(operatorWord) {
   if (num1String !== "" && num2String !== "") {
     operate();
   } else if (num2String) {
@@ -129,7 +151,7 @@ function handleClickOnOperator(event) {
     updateNum1AndNum2Strings(num2String, "");
   }
 
-  operator = event.target.id;
+  operator = operatorWord;
   addDecimalEventListeners();
 }
 
