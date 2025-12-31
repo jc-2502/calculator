@@ -132,6 +132,7 @@ function handleClickOnEquals() {
     updateDisplay(num1String);
   } else if (num1String === "" && num2String !== "") {
     updateDisplay(num2String);
+    updateNum1AndNum2Strings(num2String, "");
   }
 
   operator = "";
