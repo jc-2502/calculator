@@ -39,7 +39,7 @@ function operate() {
       break;
   }
 
-  updateDisplay(result);
+  updateNumberDisplay(result);
 
   if (result === "error: division by 0") {
     updateNum1AndNum2Strings("", "");
@@ -90,7 +90,7 @@ function handleDigit(digit) {
     num2String = digit;
   }
 
-  if (num2String) updateDisplay(num2String, false);
+  if (num2String) updateNumberDisplay(num2String, false);
 }
 
 function handleDecimalKey(event) {
@@ -108,7 +108,7 @@ function handleDecimal() {
     num2String = "0.";
   }
 
-  if (num2String) updateDisplay(num2String, false);
+  if (num2String) updateNumberDisplay(num2String, false);
 
   const decimalButton = document.querySelector("#decimal");
   decimalButton.removeEventListener("click", handleDecimal);
@@ -147,7 +147,7 @@ function handleOperator(operatorWord) {
   if (num1String !== "" && num2String !== "") {
     operate();
   } else if (num2String) {
-    updateDisplay(num2String);
+    updateNumberDisplay(num2String);
     updateNum1AndNum2Strings(num2String, "");
   }
 
@@ -165,9 +165,9 @@ function handleEquals() {
   if (num1String !== "" && num2String !== "") {
     operate();
   } else if (num1String !== "" && num2String === "") {
-    updateDisplay(num1String);
+    updateNumberDisplay(num1String);
   } else if (num1String === "" && num2String !== "") {
-    updateDisplay(num2String);
+    updateNumberDisplay(num2String);
     updateNum1AndNum2Strings(num2String, "");
   }
 
@@ -197,9 +197,9 @@ function handleBack() {
   }
 
   if (num2String) {
-    updateDisplay(num2String);
+    updateNumberDisplay(num2String);
   } else {
-    updateDisplay("0");
+    updateNumberDisplay("0");
   }
 }
 
@@ -211,14 +211,14 @@ function handleClearKey(event) {
 
 function handleClear() {
   num2String = "";
-  updateDisplay("0");
+  updateNumberDisplay("0");
   addDecimalEventListeners();
 }
 
 function handleAllClear() {
   updateNum1AndNum2Strings("", "");
   operator = "";
-  updateDisplay("0");
+  updateNumberDisplay("0");
   addDecimalEventListeners();
 }
 
@@ -227,7 +227,7 @@ function updateNum1AndNum2Strings(value1, value2) {
   num2String = value2;
 }
 
-function updateDisplay(value, shorten = true) {
+function updateNumberDisplay(value, shorten = true) {
   const display = document.querySelector("#number-display");
 
   if (shorten) {
