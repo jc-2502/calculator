@@ -50,16 +50,16 @@ function operate() {
 
 function addEventListenersToButtons() {
   const digitButtons = document.querySelectorAll(".digit");
-  const decimalButton = document.querySelector("#decimal");
   const operatorButtons = document.querySelectorAll(".operator");
+  const decimalButton = document.querySelector("#decimal");
   const equalsButton = document.querySelector("#equals");
   const backButton = document.querySelector("#back");
   const clearButton = document.querySelector("#clear");
   const allClearButton = document.querySelector("#all-clear");
 
   digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
-  decimalButton.addEventListener("click", handleDecimal);
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
+  decimalButton.addEventListener("click", handleDecimal);
   equalsButton.addEventListener("click", handleEquals);
   backButton.addEventListener("click", handleBack);
   clearButton.addEventListener("click", handleClear);
@@ -67,7 +67,7 @@ function addEventListenersToButtons() {
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey, handleEqualsKey, handleBackKey, handleClearKey];
+  handlers = [handleDigitKey, handleOperatorKey, handleDecimalKey, handleEqualsKey, handleBackKey, handleClearKey];
   handlers.forEach(handler => document.addEventListener("keydown", handler));
 }
 
