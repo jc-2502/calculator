@@ -63,7 +63,7 @@ function addEventListenersToButtons() {
   equalsButton.addEventListener("click", handleEquals);
   backButton.addEventListener("click", handleBack);
   clearButton.addEventListener("click", handleClear);
-  allClearButton.addEventListener("click", handleClickOnAllClear);
+  allClearButton.addEventListener("click", handleAllClear);
 }
 
 function addKeyboardEventListeners() {
@@ -215,7 +215,7 @@ function handleClear() {
   addDecimalEventListeners();
 }
 
-function handleClickOnAllClear() {
+function handleAllClear() {
   updateNum1AndNum2Strings("", "");
   operator = "";
   updateDisplay("0");
