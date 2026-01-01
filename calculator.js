@@ -62,12 +62,12 @@ function addEventListenersToButtons() {
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleEquals);
   backButton.addEventListener("click", handleBack);
-  clearButton.addEventListener("click", handleClickOnClear);
+  clearButton.addEventListener("click", handleClear);
   allClearButton.addEventListener("click", handleClickOnAllClear);
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey, handleEqualsKey, handleBackKey];
+  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey, handleEqualsKey, handleBackKey, handleClearKey];
   handlers.forEach(handler => document.addEventListener("keydown", handler));
 }
 
@@ -203,7 +203,13 @@ function handleBack() {
   }
 }
 
-function handleClickOnClear() {
+function handleClearKey(event) {
+  if (event.key === "c") {
+    handleClear();
+  }
+}
+
+function handleClear() {
   num2String = "";
   updateDisplay("0");
   addDecimalEventListeners();
