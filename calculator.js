@@ -61,13 +61,13 @@ function addEventListenersToButtons() {
   decimalButton.addEventListener("click", handleDecimal);
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   equalsButton.addEventListener("click", handleEquals);
-  backButton.addEventListener("click", handleClickOnBack);
+  backButton.addEventListener("click", handleBack);
   clearButton.addEventListener("click", handleClickOnClear);
   allClearButton.addEventListener("click", handleClickOnAllClear);
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey, handleEqualsKey];
+  handlers = [handleDigitKey, handleDecimalKey, handleOperatorKey, handleEqualsKey, handleBackKey];
   handlers.forEach(handler => document.addEventListener("keydown", handler));
 }
 
@@ -181,7 +181,13 @@ function checkIfDigitAfterEquals() {
   }
 }
 
-function handleClickOnBack() {
+function handleBackKey(event) {
+  if (event.key === "Backspace") {
+    handleBack();
+  }
+}
+
+function handleBack() {
 
   if (num2String !== "") {
     if (num2String.at(-1) === ".") {
