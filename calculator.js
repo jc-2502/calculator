@@ -228,7 +228,7 @@ function updateNum1AndNum2Strings(value1, value2) {
 }
 
 function updateDisplay(value, shorten = true) {
-  const display = document.querySelector("#display");
+  const display = document.querySelector("#number-display");
 
   if (shorten) {
     if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
@@ -263,7 +263,7 @@ function updateDisplay(value, shorten = true) {
 }
 
 function addErrorMsgClassToDisplay(value) {
-  const display = document.querySelector("#display");
+  const display = document.querySelector("#number-display");
   display.classList.add("display-error-msg");
 
   const buttons = document.querySelectorAll("button");
@@ -271,7 +271,7 @@ function addErrorMsgClassToDisplay(value) {
 }
 
 function removeErrorMsgClassFromDisplay() {
-  const display = document.querySelector("#display");
+  const display = document.querySelector("#number-display");
   display.classList.remove("display-error-msg");
 
   const buttons = document.querySelectorAll("button");
