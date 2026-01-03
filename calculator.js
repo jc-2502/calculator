@@ -84,9 +84,9 @@ function handleDigitKey(event) {
 function handleDigit(digit) {
   checkIfDigitAfterEquals();
 
-  if (num2String !== "" && !(num2String === "0" && digit === "0")) {
+  if (num2String !== "" && num2String !== "0") {
     num2String += digit;
-  } else if (num2String === "") {
+  } else if (num2String === "" || num2String === "0") {
     num2String = digit;
   }
 
