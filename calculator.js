@@ -90,7 +90,9 @@ function handleDigit(digit) {
     num2String = digit;
   }
 
-  if (num2String) updateNumberDisplay(num2String, false);
+  if (num2String) {
+    updateNumberDisplay(num2String, false);
+  }
 }
 
 function handleDecimalKey(event) {
@@ -108,7 +110,9 @@ function handleDecimal() {
     num2String = "0.";
   }
 
-  if (num2String) updateNumberDisplay(num2String, false);
+  if (num2String) {
+    updateNumberDisplay(num2String, false);
+  }
 
   const decimalButton = document.querySelector("#decimal");
   decimalButton.removeEventListener("click", handleDecimal);
