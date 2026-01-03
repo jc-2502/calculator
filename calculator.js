@@ -274,6 +274,13 @@ function updateNumberDisplay(value, shorten = true) {
   display.textContent = value;
 }
 
+function updateOperationDisplay(...partsToAdd) {
+  operationParts.push(...partsToAdd);
+
+  const operationDisplay = document.querySelector("#operation-display");
+  operationDisplay.textContent = operationParts.join(' ');
+}
+
 function addErrorMsgClassToNumberDisplay(value) {
   const display = document.querySelector("#number-display");
   display.classList.add("display-error-msg");
