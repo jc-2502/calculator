@@ -1,6 +1,7 @@
 let num1String = "";
 let operator = "";
 let num2String = "";
+let operationParts = [];
 
 function add (num1, num2) {
   return num1 + num2;
