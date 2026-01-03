@@ -199,7 +199,7 @@ function handleBack() {
   if (num2String) {
     updateNumberDisplay(num2String);
   } else {
-    updateNumberDisplay("0");
+    updateNumberDisplay("");
   }
 }
 
@@ -211,14 +211,14 @@ function handleClearKey(event) {
 
 function handleClear() {
   num2String = "";
-  updateNumberDisplay("0");
+  updateNumberDisplay("");
   addDecimalEventListeners();
 }
 
 function handleAllClear() {
   updateNum1AndNum2Strings("", "");
   operator = "";
-  updateNumberDisplay("0");
+  updateNumberDisplay("");
   addDecimalEventListeners();
 }
 
