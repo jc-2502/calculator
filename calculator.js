@@ -1,5 +1,5 @@
 let num1String = "";
-let operator;
+let operator = "";
 let num2String = "";
 
 function add (num1, num2) {
