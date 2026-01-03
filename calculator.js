@@ -148,6 +148,19 @@ function handleOperatorKey(event) {
   }
 }
 
+function getOperatorSymbol(operator) {
+  switch (operator) {
+    case "add":
+      return "+";
+    case "subtract":
+      return "\u2212";
+    case "multiply":
+      return "\u00d7";
+    case "divide":
+      return "\u00f7";
+  }
+}
+
 function handleOperator(operatorWord) {
   if (num1String !== "" && num2String !== "") {
     operate();
