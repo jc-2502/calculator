@@ -260,20 +260,20 @@ function updateNumberDisplay(value, shorten = true) {
   display.textContent = value;
 }
 
-function addErrorMsgClassToDisplay(value) {
+function addErrorMsgClassToNumberDisplay(value) {
   const display = document.querySelector("#number-display");
   display.classList.add("display-error-msg");
 
   const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => button.addEventListener("click", removeErrorMsgClassFromDisplay));
+  buttons.forEach(button => button.addEventListener("click", removeErrorMsgClassFromNumberDisplay));
 }
 
-function removeErrorMsgClassFromDisplay() {
+function removeErrorMsgClassFromNumberDisplay() {
   const display = document.querySelector("#number-display");
   display.classList.remove("display-error-msg");
 
   const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => button.removeEventListener("click", removeErrorMsgClassFromDisplay));
+  buttons.forEach(button => button.removeEventListener("click", removeErrorMsgClassFromNumberDisplay));
 }
 
 addEventListenersToButtons();
