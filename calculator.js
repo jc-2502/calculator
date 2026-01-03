@@ -192,18 +192,12 @@ function handleBackKey(event) {
 }
 
 function handleBack() {
-
   if (num2String !== "") {
     if (num2String.at(-1) === ".") {
       addDecimalEventListeners();
     }
     num2String = num2String.slice(0, -1);
-  }
-
-  if (num2String) {
     updateNumberDisplay(num2String);
-  } else {
-    updateNumberDisplay("");
   }
 }
 
