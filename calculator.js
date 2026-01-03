@@ -254,7 +254,7 @@ function updateNumberDisplay(value, shorten = true) {
   }
 
   if (value === "error: division by 0") {
-    addErrorMsgClassToDisplay();
+    addErrorMsgClassToNumberDisplay();
   }
 
   display.textContent = value;
@@ -266,6 +266,7 @@ function addErrorMsgClassToNumberDisplay(value) {
 
   const buttons = document.querySelectorAll("button");
   buttons.forEach(button => button.addEventListener("click", removeErrorMsgClassFromNumberDisplay));
+  document.addEventListener("keydown", removeErrorMsgClassFromNumberDisplayOnKeydown);
 }
 
 function removeErrorMsgClassFromNumberDisplay() {
@@ -274,6 +275,20 @@ function removeErrorMsgClassFromNumberDisplay() {
 
   const buttons = document.querySelectorAll("button");
   buttons.forEach(button => button.removeEventListener("click", removeErrorMsgClassFromNumberDisplay));
+  document.removeEventListener("keydown", removeErrorMsgClassFromNumberDisplayOnKeydown);
+}
+
+const keys = [
+  '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+  '+', '-', '*', 'x', '/',
+  '=', 'Enter',
+  'Backspace', 'c'
+];
+
+function removeErrorMsgClassFromNumberDisplayOnKeydown(event) {
+  if (keys.includes(event.key)) {
+    removeErrorMsgClassFromNumberDisplay();
+  }
 }
 
 addEventListenersToButtons();
