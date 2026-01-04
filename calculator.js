@@ -311,7 +311,7 @@ function updateOperationDisplay(...partsToAdd) {
   operationDisplay.textContent = operationParts.join(' ');
 }
 
-function addErrorMsgClassToNumberDisplay(value) {
+function addErrorMsgClassToNumberDisplay() {
   const numberDisplay = document.querySelector("#number-display");
   numberDisplay.classList.add("display-error-msg");
 
