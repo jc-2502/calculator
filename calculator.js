@@ -188,6 +188,9 @@ function handleOperator(operatorWord) {
 
 function handleEqualsKey(event) {
   if (event.key === "=" || event.key === "Enter") {
+    // prevent pressing enter from activating last clicked button again
+    event.preventDefault();
+
     handleEquals();
   }
 }
