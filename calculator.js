@@ -47,6 +47,8 @@ function operate() {
   } else {
     updateNum1AndNum2Strings(result, "");
   }
+
+  return result;
 }
 
 function addEventListenersToButtons() {
