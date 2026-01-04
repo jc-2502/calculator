@@ -214,6 +214,7 @@ function handleEquals() {
 function checkIfDigitAfterEquals() {
   if (operator === "" && num1String !== "") {
     num1String = "";
+    clearOperationDisplay();
   }
 }
 
