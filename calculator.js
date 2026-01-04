@@ -183,10 +183,15 @@ function handleEqualsKey(event) {
 
 function handleEquals() {
   if (num1String !== "" && num2String !== "") {
-    operate();
+    let result;
+    updateOperationDisplay(num2String);
+    result = operate();
+    updateNumberDisplay(result);
   } else if (num1String !== "" && num2String === "") {
+    updateOperationDisplay(num1String, "=");
     updateNumberDisplay(num1String);
   } else if (num1String === "" && num2String !== "") {
+    updateOperationDisplay(num2String, "=");
     updateNumberDisplay(num2String);
     updateNum1AndNum2Strings(num2String, "");
   }
