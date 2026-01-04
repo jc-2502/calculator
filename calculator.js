@@ -263,7 +263,7 @@ function updateNum1AndNum2Strings(value1, value2) {
 }
 
 function updateNumberDisplay(value, shorten = true) {
-  const display = document.querySelector("#number-display");
+  const numberDisplay = document.querySelector("#number-display");
 
   if (shorten) {
     if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
@@ -294,7 +294,7 @@ function updateNumberDisplay(value, shorten = true) {
     addErrorMsgClassToNumberDisplay();
   }
 
-  display.textContent = value;
+  numberDisplay.textContent = value;
 }
 
 function clearOperationDisplay() {
@@ -312,8 +312,8 @@ function updateOperationDisplay(...partsToAdd) {
 }
 
 function addErrorMsgClassToNumberDisplay(value) {
-  const display = document.querySelector("#number-display");
-  display.classList.add("display-error-msg");
+  const numberDisplay = document.querySelector("#number-display");
+  numberDisplay.classList.add("display-error-msg");
 
   const buttons = document.querySelectorAll("button");
   buttons.forEach(button => button.addEventListener("click", removeErrorMsgClassFromNumberDisplay));
@@ -321,8 +321,8 @@ function addErrorMsgClassToNumberDisplay(value) {
 }
 
 function removeErrorMsgClassFromNumberDisplay() {
-  const display = document.querySelector("#number-display");
-  display.classList.remove("display-error-msg");
+  const numberDisplay = document.querySelector("#number-display");
+  numberDisplay.classList.remove("display-error-msg");
 
   const buttons = document.querySelectorAll("button");
   buttons.forEach(button => button.removeEventListener("click", removeErrorMsgClassFromNumberDisplay));
