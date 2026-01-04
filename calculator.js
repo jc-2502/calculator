@@ -164,10 +164,21 @@ function getOperatorSymbol(operator) {
 }
 
 function handleOperator(operatorWord) {
+  if (num2String) {
+    updateOperationDisplay(num2String);
+  }
+
+  const operatorSymbol = getOperatorSymbol(operatorWord);
+
   if (num1String !== "" && num2String !== "") {
-    operate();
+    const result = operate();
+    updateOperationDisplay(result, operatorSymbol);
+  } else if (num1String) {
+    updateNumberDisplay("");
+    updateOperationDisplay(num1String, operatorSymbol);
   } else if (num2String) {
-    updateNumberDisplay(num2String);
+    updateNumberDisplay("");
+    updateOperationDisplay(operatorSymbol);
     updateNum1AndNum2Strings(num2String, "");
   }
 
