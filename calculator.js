@@ -40,7 +40,7 @@ function operate() {
       break;
   }
 
-  updateNumberDisplay(result);
+  updateOperationDisplay("=");
 
   if (result === "error: division by 0") {
     updateNum1AndNum2Strings("", "");
