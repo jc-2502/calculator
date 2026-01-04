@@ -175,7 +175,12 @@ function handleOperator(operatorWord) {
     updateOperationDisplay(result, operatorSymbol);
   } else if (num1String) {
     updateNumberDisplay("");
-    updateOperationDisplay(num1String, operatorSymbol);
+    if (operationParts.at(-1) === num1String) {
+      // clear clears result from number display and adds in operation display
+      updateOperationDisplay(operatorSymbol);
+    } else {
+      updateOperationDisplay(num1String, operatorSymbol);
+    }
   } else if (num2String) {
     updateNumberDisplay("");
     updateOperationDisplay(operatorSymbol);
@@ -246,6 +251,9 @@ function handleClearKey(event) {
 function handleClear() {
   num2String = "";
   updateNumberDisplay("");
+  if (num1String !== "" & num2String === "") {
+    updateOperationDisplay(num1String);
+  }
   addDecimalEventListeners();
 }
 
