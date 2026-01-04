@@ -232,6 +232,7 @@ function handleClear() {
 function handleAllClear() {
   updateNum1AndNum2Strings("", "");
   operator = "";
+  clearOperationDisplay();
   updateNumberDisplay("");
   addDecimalEventListeners();
 }
