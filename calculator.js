@@ -55,6 +55,7 @@ function addEventListenersToButtons() {
   const digitButtons = document.querySelectorAll(".digit");
   const operatorButtons = document.querySelectorAll(".operator");
   const decimalButton = document.querySelector("#decimal");
+  const plusMinusButton = document.querySelector("#plus-minus");
   const equalsButton = document.querySelector("#equals");
   const backButton = document.querySelector("#back");
   const clearButton = document.querySelector("#clear");
@@ -63,6 +64,7 @@ function addEventListenersToButtons() {
   digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
   operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
   decimalButton.addEventListener("click", handleDecimal);
+  plusMinusButton.addEventListener("click", handlePlusMinus);
   equalsButton.addEventListener("click", handleEquals);
   backButton.addEventListener("click", handleBack);
   clearButton.addEventListener("click", handleClear);
@@ -126,6 +128,18 @@ function addDecimalEventListeners() {
   const decimalButton = document.querySelector("#decimal");
   decimalButton.addEventListener("click", handleDecimal);
   document.addEventListener("keydown", handleDecimalKey);
+}
+
+function handlePlusMinus() {
+  checkIfDigitAfterEquals();
+
+  if (num2String !== "") {
+    num2String = (num2String.at(0) === "-") ? num2String.slice(1) : "-" + num2String;
+  } else if (num2String === "") {
+    num2String = "-";
+  }
+
+  updateNumberDisplay(num2String, false);
 }
 
 function handleClickOnOperator(event) {
