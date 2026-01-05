@@ -2,7 +2,7 @@
   font-family: "Liberation Sans", sans-serif;
 }
 
-body, #calculator-area, #button-area, .button-row {
+body, #calculator-area, #operation-display, #number-display, #button-area, .button-row {
   display: flex;
 }
 
@@ -31,8 +31,10 @@ body {
 }
 
 #operation-display, #number-display {
-  text-align: right;
+  justify-content: right;
+  align-items: center;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 #operation-display {
