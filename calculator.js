@@ -3,6 +3,11 @@ let operator = '';
 let num2String = '';
 let operationParts = [];
 
+function updateNum1AndNum2Strings(value1, value2) {
+  num1String = value1;
+  num2String = value2;
+}
+
 function add (num1, num2) {
   return num1 + num2;
 };
@@ -275,11 +280,6 @@ function handleAllClear() {
   clearOperationDisplay();
   updateNumberDisplay('');
   addDecimalEventListeners();
-}
-
-function updateNum1AndNum2Strings(value1, value2) {
-  num1String = value1;
-  num2String = value2;
 }
 
 function updateNumberDisplay(value, shorten = true) {
