@@ -1,6 +1,6 @@
-let num1String = "";
-let operator = "";
-let num2String = "";
+let num1String = '';
+let operator = '';
+let num2String = '';
 let operationParts = [];
 
 function add (num1, num2) {
@@ -17,7 +17,7 @@ function multiply (num1, num2) {
 
 function divide (num1, num2) {
   const result = num1 / num2;
-  return (result === Infinity) ? "error: division by 0" : result;
+  return (result === Infinity) ? 'error: division by 0' : result;
 };
 
 function operate() {
@@ -26,54 +26,54 @@ function operate() {
   let result;
 
   switch (operator) {
-    case "add":
+    case 'add':
       result = add(num1, num2);
       break;
-    case "subtract":
+    case 'subtract':
       result = subtract(num1, num2);
       break;
-    case "multiply":
+    case 'multiply':
       result = multiply(num1, num2);
       break;
-    case "divide":
+    case 'divide':
       result = divide(num1, num2);
       break;
   }
 
-  updateOperationDisplay("=");
+  updateOperationDisplay('=');
 
-  if (result === "error: division by 0") {
-    updateNum1AndNum2Strings("", "");
+  if (result === 'error: division by 0') {
+    updateNum1AndNum2Strings('', '');
   } else {
-    updateNum1AndNum2Strings(result, "");
+    updateNum1AndNum2Strings(result, '');
   }
 
   return result;
 }
 
 function addEventListenersToButtons() {
-  const digitButtons = document.querySelectorAll(".digit");
-  const operatorButtons = document.querySelectorAll(".operator");
-  const decimalButton = document.querySelector("#decimal");
-  const plusMinusButton = document.querySelector("#plus-minus");
-  const equalsButton = document.querySelector("#equals");
-  const backButton = document.querySelector("#back");
-  const clearButton = document.querySelector("#clear");
-  const allClearButton = document.querySelector("#all-clear");
+  const digitButtons = document.querySelectorAll('.digit');
+  const operatorButtons = document.querySelectorAll('.operator');
+  const decimalButton = document.querySelector('#decimal');
+  const plusMinusButton = document.querySelector('#plus-minus');
+  const equalsButton = document.querySelector('#equals');
+  const backButton = document.querySelector('#back');
+  const clearButton = document.querySelector('#clear');
+  const allClearButton = document.querySelector('#all-clear');
 
-  digitButtons.forEach(button => button.addEventListener("click", handleClickOnDigit));
-  operatorButtons.forEach(button => button.addEventListener("click", handleClickOnOperator));
-  decimalButton.addEventListener("click", handleDecimal);
-  plusMinusButton.addEventListener("click", handlePlusMinus);
-  equalsButton.addEventListener("click", handleEquals);
-  backButton.addEventListener("click", handleBack);
-  clearButton.addEventListener("click", handleClear);
-  allClearButton.addEventListener("click", handleAllClear);
+  digitButtons.forEach(button => button.addEventListener('click', handleClickOnDigit));
+  operatorButtons.forEach(button => button.addEventListener('click', handleClickOnOperator));
+  decimalButton.addEventListener('click', handleDecimal);
+  plusMinusButton.addEventListener('click', handlePlusMinus);
+  equalsButton.addEventListener('click', handleEquals);
+  backButton.addEventListener('click', handleBack);
+  clearButton.addEventListener('click', handleClear);
+  allClearButton.addEventListener('click', handleAllClear);
 }
 
 function addKeyboardEventListeners() {
   handlers = [handleDigitKey, handleOperatorKey, handleDecimalKey, handleEqualsKey, handleBackKey, handleClearKey];
-  handlers.forEach(handler => document.addEventListener("keydown", handler));
+  handlers.forEach(handler => document.addEventListener('keydown', handler));
 }
 
 function handleClickOnDigit(event) {
@@ -89,9 +89,9 @@ function handleDigitKey(event) {
 function handleDigit(digit) {
   checkIfDigitAfterEquals();
 
-  if (num2String !== "" && num2String !== "0") {
+  if (num2String !== '' && num2String !== '0') {
     num2String += digit;
-  } else if (num2String === "" || num2String === "0") {
+  } else if (num2String === '' || num2String === '0') {
     num2String = digit;
   }
 
@@ -101,7 +101,7 @@ function handleDigit(digit) {
 }
 
 function handleDecimalKey(event) {
-  if (event.key === ".") {
+  if (event.key === '.') {
     handleDecimal();
   }
 }
@@ -109,32 +109,32 @@ function handleDecimalKey(event) {
 function handleDecimal() {
   checkIfDigitAfterEquals();
 
-  if (num2String !== "") {
-    num2String += ".";
-  } else if (num2String === "") {
-    num2String = "0.";
+  if (num2String !== '') {
+    num2String += '.';
+  } else if (num2String === '') {
+    num2String = '0.';
   }
 
   updateNumberDisplay(num2String, false);
 
-  const decimalButton = document.querySelector("#decimal");
-  decimalButton.removeEventListener("click", handleDecimal);
-  document.removeEventListener("keydown", handleDecimalKey);
+  const decimalButton = document.querySelector('#decimal');
+  decimalButton.removeEventListener('click', handleDecimal);
+  document.removeEventListener('keydown', handleDecimalKey);
 }
 
 function addDecimalEventListeners() {
-  const decimalButton = document.querySelector("#decimal");
-  decimalButton.addEventListener("click", handleDecimal);
-  document.addEventListener("keydown", handleDecimalKey);
+  const decimalButton = document.querySelector('#decimal');
+  decimalButton.addEventListener('click', handleDecimal);
+  document.addEventListener('keydown', handleDecimalKey);
 }
 
 function handlePlusMinus() {
   checkIfDigitAfterEquals();
 
-  if (num2String !== "") {
-    num2String = (num2String.at(0) === "-") ? num2String.slice(1) : "-" + num2String;
-  } else if (num2String === "") {
-    num2String = "-";
+  if (num2String !== '') {
+    num2String = (num2String.at(0) === '-') ? num2String.slice(1) : '-' + num2String;
+  } else if (num2String === '') {
+    num2String = '-';
   }
 
   updateNumberDisplay(num2String, false);
@@ -146,32 +146,32 @@ function handleClickOnOperator(event) {
 
 function handleOperatorKey(event) {
   switch (event.key) {
-    case "+":
-      handleOperator("add");
+    case '+':
+      handleOperator('add');
       break;
-    case "-":
-      handleOperator("subtract");
+    case '-':
+      handleOperator('subtract');
       break;
-    case "*":
-    case "x":
-      handleOperator("multiply");
+    case '*':
+    case 'x':
+      handleOperator('multiply');
       break;
-    case "/":
-      handleOperator("divide");
+    case '/':
+      handleOperator('divide');
       break;
   }
 }
 
 function getOperatorSymbol(operator) {
   switch (operator) {
-    case "add":
-      return "+";
-    case "subtract":
-      return "\u2212";
-    case "multiply":
-      return "\u00d7";
-    case "divide":
-      return "\u00f7";
+    case 'add':
+      return '+';
+    case 'subtract':
+      return '\u2212';
+    case 'multiply':
+      return '\u00d7';
+    case 'divide':
+      return '\u00f7';
   }
 }
 
@@ -182,11 +182,11 @@ function handleOperator(operatorWord) {
 
   const operatorSymbol = getOperatorSymbol(operatorWord);
 
-  if (num1String !== "" && num2String !== "") {
+  if (num1String !== '' && num2String !== '') {
     const result = operate();
     updateOperationDisplay(result, operatorSymbol);
   } else if (num1String) {
-    updateNumberDisplay("");
+    updateNumberDisplay('');
     if (operationParts.at(-1) === num1String) {
       // clear clears result from number display and adds in operation display
       updateOperationDisplay(operatorSymbol);
@@ -194,9 +194,9 @@ function handleOperator(operatorWord) {
       updateOperationDisplay(num1String, operatorSymbol);
     }
   } else if (num2String) {
-    updateNumberDisplay("");
+    updateNumberDisplay('');
     updateOperationDisplay(operatorSymbol);
-    updateNum1AndNum2Strings(num2String, "");
+    updateNum1AndNum2Strings(num2String, '');
   }
 
   operator = operatorWord;
@@ -204,7 +204,7 @@ function handleOperator(operatorWord) {
 }
 
 function handleEqualsKey(event) {
-  if (event.key === "=" || event.key === "Enter") {
+  if (event.key === '=' || event.key === 'Enter') {
     // prevent pressing enter from activating last clicked button again
     event.preventDefault();
 
@@ -213,40 +213,40 @@ function handleEqualsKey(event) {
 }
 
 function handleEquals() {
-  if (num1String !== "" && num2String !== "") {
+  if (num1String !== '' && num2String !== '') {
     let result;
     updateOperationDisplay(num2String);
     result = operate();
     updateNumberDisplay(result);
-  } else if (num1String !== "" && num2String === "") {
-    updateOperationDisplay(num1String, "=");
+  } else if (num1String !== '' && num2String === '') {
+    updateOperationDisplay(num1String, '=');
     updateNumberDisplay(num1String);
-  } else if (num1String === "" && num2String !== "") {
-    updateOperationDisplay(num2String, "=");
+  } else if (num1String === '' && num2String !== '') {
+    updateOperationDisplay(num2String, '=');
     updateNumberDisplay(num2String);
-    updateNum1AndNum2Strings(num2String, "");
+    updateNum1AndNum2Strings(num2String, '');
   }
 
-  operator = "";
+  operator = '';
   addDecimalEventListeners();
 }
 
 function checkIfDigitAfterEquals() {
-  if (operator === "" && num1String !== "") {
-    num1String = "";
+  if (operator === '' && num1String !== '') {
+    num1String = '';
     clearOperationDisplay();
   }
 }
 
 function handleBackKey(event) {
-  if (event.key === "Backspace") {
+  if (event.key === 'Backspace') {
     handleBack();
   }
 }
 
 function handleBack() {
-  if (num2String !== "") {
-    if (num2String.at(-1) === ".") {
+  if (num2String !== '') {
+    if (num2String.at(-1) === '.') {
       addDecimalEventListeners();
     }
     num2String = num2String.slice(0, -1);
@@ -255,25 +255,25 @@ function handleBack() {
 }
 
 function handleClearKey(event) {
-  if (event.key === "c") {
+  if (event.key === 'c') {
     handleClear();
   }
 }
 
 function handleClear() {
-  num2String = "";
-  updateNumberDisplay("");
-  if (num1String !== "" & num2String === "") {
+  num2String = '';
+  updateNumberDisplay('');
+  if (num1String !== '' & num2String === '') {
     updateOperationDisplay(num1String);
   }
   addDecimalEventListeners();
 }
 
 function handleAllClear() {
-  updateNum1AndNum2Strings("", "");
-  operator = "";
+  updateNum1AndNum2Strings('', '');
+  operator = '';
   clearOperationDisplay();
-  updateNumberDisplay("");
+  updateNumberDisplay('');
   addDecimalEventListeners();
 }
 
@@ -283,7 +283,7 @@ function updateNum1AndNum2Strings(value1, value2) {
 }
 
 function updateNumberDisplay(value, shorten = true) {
-  const numberDisplay = document.querySelector("#number-display");
+  const numberDisplay = document.querySelector('#number-display');
 
   if (shorten) {
     if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
@@ -310,7 +310,7 @@ function updateNumberDisplay(value, shorten = true) {
     }
   }
 
-  if (value === "error: division by 0") {
+  if (value === 'error: division by 0') {
     addErrorMsgClassToNumberDisplay();
   }
 
@@ -320,19 +320,19 @@ function updateNumberDisplay(value, shorten = true) {
 function clearOperationDisplay() {
   operationParts = [];
 
-  const operationDisplay = document.querySelector("#operation-display");
-  operationDisplay.textContent = "";
+  const operationDisplay = document.querySelector('#operation-display');
+  operationDisplay.textContent = '';
 }
 
 function updateOperationDisplay(...partsToAdd) {
   operationParts.push(...partsToAdd);
 
-  const operationDisplay = document.querySelector("#operation-display");
+  const operationDisplay = document.querySelector('#operation-display');
   operationDisplay.textContent = operationParts.map(part => shortenOperationPart(part)).join(' ');
 }
 
 function shortenOperationPart(value) {
-  if (!["+", "\u2212", "\u00d7", "\u00f7", "="].includes(value)) {
+  if (!['+', '\u2212', '\u00d7', '\u00f7', '='].includes(value)) {
     if (value >= 1e16 || (value > 1e15 && value % 1 != 0)) {
       // if value is 17 or more digits, or 16 'integer part' digits before decimal,
       // express as scientific notation with 15 decimals i.e. #.###############e+##
@@ -357,21 +357,21 @@ function shortenOperationPart(value) {
 }
 
 function addErrorMsgClassToNumberDisplay() {
-  const numberDisplay = document.querySelector("#number-display");
-  numberDisplay.classList.add("display-error-msg");
+  const numberDisplay = document.querySelector('#number-display');
+  numberDisplay.classList.add('display-error-msg');
 
-  const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => button.addEventListener("click", removeErrorMsgClassFromNumberDisplay));
-  document.addEventListener("keydown", removeErrorMsgClassFromNumberDisplayOnKeydown);
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => button.addEventListener('click', removeErrorMsgClassFromNumberDisplay));
+  document.addEventListener('keydown', removeErrorMsgClassFromNumberDisplayOnKeydown);
 }
 
 function removeErrorMsgClassFromNumberDisplay() {
-  const numberDisplay = document.querySelector("#number-display");
-  numberDisplay.classList.remove("display-error-msg");
+  const numberDisplay = document.querySelector('#number-display');
+  numberDisplay.classList.remove('display-error-msg');
 
-  const buttons = document.querySelectorAll("button");
-  buttons.forEach(button => button.removeEventListener("click", removeErrorMsgClassFromNumberDisplay));
-  document.removeEventListener("keydown", removeErrorMsgClassFromNumberDisplayOnKeydown);
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => button.removeEventListener('click', removeErrorMsgClassFromNumberDisplay));
+  document.removeEventListener('keydown', removeErrorMsgClassFromNumberDisplayOnKeydown);
 }
 
 const keys = [
