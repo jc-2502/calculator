@@ -77,8 +77,10 @@ function addEventListenersToButtons() {
 }
 
 function addKeyboardEventListeners() {
-  const handlers = [handleDigitKey, handleOperatorKey, handleDecimalKey, handleEqualsKey, handleBackKey, handleClearKey];
-  handlers.forEach(handler => document.addEventListener('keydown', handler));
+  const keydownHandlers = [handleDigitKey, handleBackKey];
+  const keyupHandlers = [handleOperatorKey, handleDecimalKey, handleEqualsKey, handleClearKey];
+  keydownHandlers.forEach(handler => document.addEventListener('keydown', handler));
+  keyupHandlers.forEach(handler => document.addEventListener('keyup', handler));
 }
 
 function handleClickOnDigit(event) {
@@ -124,13 +126,13 @@ function handleDecimal() {
 
   const decimalButton = document.querySelector('#decimal');
   decimalButton.removeEventListener('click', handleDecimal);
-  document.removeEventListener('keydown', handleDecimalKey);
+  document.removeEventListener('keyup', handleDecimalKey);
 }
 
 function addDecimalEventListeners() {
   const decimalButton = document.querySelector('#decimal');
   decimalButton.addEventListener('click', handleDecimal);
-  document.addEventListener('keydown', handleDecimalKey);
+  document.addEventListener('keyup', handleDecimalKey);
 }
 
 function handlePlusMinus() {
