@@ -72,7 +72,7 @@ function addEventListenersToButtons() {
 }
 
 function addKeyboardEventListeners() {
-  handlers = [handleDigitKey, handleOperatorKey, handleDecimalKey, handleEqualsKey, handleBackKey, handleClearKey];
+  const handlers = [handleDigitKey, handleOperatorKey, handleDecimalKey, handleEqualsKey, handleBackKey, handleClearKey];
   handlers.forEach(handler => document.addEventListener('keydown', handler));
 }
 
