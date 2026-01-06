@@ -221,6 +221,7 @@ function handleEqualsKey(event) {
 
 function handleEquals() {
   if (num1String !== '' && num2String !== '') {
+    // updateOperationDisplay adds num2String to operation display before operate adds =
     let result;
     updateOperationDisplay(num2String);
     result = operate();
@@ -270,9 +271,12 @@ function handleClearKey(event) {
 function handleClear() {
   num2String = '';
   updateNumberDisplay('');
+
   if (num1String !== '' & num2String === '') {
+    // result was in number display - move to operation display
     updateOperationDisplay(num1String);
   }
+
   addDecimalEventListeners();
 }
 
@@ -291,6 +295,7 @@ function updateNumberDisplay(value, shorten = true) {
     if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
       // if value is 15 or more digits, or 14 'integer part' digits before decimal,
       // express as scientific notation with 9 decimals i.e. #.#########e+##
+      // (display fits 14 chars)
       value = Number(value).toPrecision(10);
     } else if (value <= -1e13 || (value < -1e12 && value % 1 != 0)) {
       // if negative value is 14 or more digits, or 13 'integer part' digits before decimal,
@@ -302,10 +307,13 @@ function updateNumberDisplay(value, shorten = true) {
           value = parseFloat(Number(value).toPrecision(14));
         } else if (value < -1) {
           value = parseFloat(Number(value).toPrecision(13));
+          // - and 13 significant digits
         } else if (value > 0) {
           value = parseFloat(Number(value).toFixed(13));
+          // 0 and 13 decimals
         } else if (value < 0) {
           value = parseFloat(Number(value).toFixed(12));
+          // -, 0, and 12 decimals
         }
         // parseFloat handles scientific notation for exponents of -7 or lower
         // (6 0s before first significant digit)
@@ -338,6 +346,7 @@ function shortenOperationPart(value) {
     if (value >= 1e16 || (value > 1e15 && value % 1 != 0)) {
       // if value is 17 or more digits, or 16 'integer part' digits before decimal,
       // express as scientific notation with 15 decimals i.e. #.###############e+##
+      // (16 significant digits displayed with precision)
       value = Number(value).toPrecision(16);
     } else if (value <= -1e16 || (value < -1e15 && value % 1 != 0)) {
       // if negative value is 17 or more digits, or 16 'integer part' digits before decimal,
