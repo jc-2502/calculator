@@ -269,14 +269,16 @@ function handleClearKey(event) {
 }
 
 function handleClear() {
-  num2String = '';
-  updateNumberDisplay('');
-
-  if (num1String !== '' & num2String === '') {
+  if (num1String !== ''
+      && num2String === ''
+      && operator === ''
+      && operationParts.at(-1) !== num1String) {
     // result was in number display - move to operation display
     updateOperationDisplay(num1String);
   }
 
+  num2String = '';
+  updateNumberDisplay('');
   addDecimalEventListeners();
 }
 
