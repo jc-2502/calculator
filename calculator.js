@@ -288,11 +288,11 @@ function updateNumberDisplay(value, shorten = true) {
   if (shorten) {
     if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
       // if value is 15 or more digits, or 14 'integer part' digits before decimal,
-      // express as scientific notation with 9 decimals i.e. #.#########e+#
+      // express as scientific notation with 9 decimals i.e. #.#########e+##
       value = Number(value).toPrecision(10);
     } else if (value <= -1e13 || (value < -1e12 && value % 1 != 0)) {
       // if negative value is 14 or more digits, or 13 'integer part' digits before decimal,
-      // express as scientific notation with 8 decimals i.e. -#.########e+#
+      // express as scientific notation with 8 decimals i.e. -#.########e+##
       value = Number(value).toPrecision(9);
     } else if (value % 1 != 0) {
       // if value has decimals
@@ -328,7 +328,32 @@ function updateOperationDisplay(...partsToAdd) {
   operationParts.push(...partsToAdd);
 
   const operationDisplay = document.querySelector("#operation-display");
-  operationDisplay.textContent = operationParts.join(' ');
+  operationDisplay.textContent = operationParts.map(part => shortenOperationPart(part)).join(' ');
+}
+
+function shortenOperationPart(value) {
+  if (!["+", "\u2212", "\u00d7", "\u00f7", "="].includes(value)) {
+    if (value >= 1e16 || (value > 1e15 && value % 1 != 0)) {
+      // if value is 17 or more digits, or 16 'integer part' digits before decimal,
+      // express as scientific notation with 15 decimals i.e. #.###############e+##
+      value = Number(value).toPrecision(16);
+    } else if (value <= -1e16 || (value < -1e15 && value % 1 != 0)) {
+      // if negative value is 17 or more digits, or 16 'integer part' digits before decimal,
+      // express as scientific notation with 15 decimals i.e. -#.###############e+##
+      value = Number(value).toPrecision(16);
+    } else if (value % 1 != 0) {
+      // if value has decimals
+        if (value > 1 || value < -1) {
+          value = parseFloat(Number(value).toPrecision(16));
+        } else if (value > 0 || value < 0) {
+          value = parseFloat(Number(value).toFixed(16));
+        }
+        // parseFloat handles scientific notation for exponents of -7 or lower
+        // (6 0s before first significant digit)
+    }
+  }
+
+  return value;
 }
 
 function addErrorMsgClassToNumberDisplay() {
