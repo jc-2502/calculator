@@ -229,7 +229,14 @@ function handleEquals() {
     result = operate();
     updateNumberDisplay(result);
   } else if (num1String !== '' && num2String === '') {
-    updateOperationDisplay(num1String, '=');
+      if (operator === '' && operationParts.at(-1) !== num1String) {
+        // result was in number display - move to operation display
+        updateOperationDisplay(num1String);
+      } else if (operator !== '') {
+        operationParts = operationParts.slice(0, -1);
+      }
+
+    updateOperationDisplay('=');
     updateNumberDisplay(num1String);
   } else if (num1String === '' && num2String !== '') {
     updateOperationDisplay(num2String, '=');
