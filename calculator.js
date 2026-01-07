@@ -192,15 +192,16 @@ function handleOperator(operatorWord) {
   if (num1String !== '' && num2String !== '') {
     const result = operate();
     updateOperationDisplay(result, operatorSymbol);
-  } else if (num1String) {
+  } else if (num1String !== '' && num2String === '') {
     updateNumberDisplay('');
+
     if (operationParts.at(-1) === num1String) {
       // clear clears result from number display and adds in operation display
       updateOperationDisplay(operatorSymbol);
     } else {
       updateOperationDisplay(num1String, operatorSymbol);
     }
-  } else if (num2String) {
+  } else if (num1String === '' && num2String !== '') {
     updateNumberDisplay('');
     updateOperationDisplay(operatorSymbol);
     updateNum1AndNum2Strings(num2String, '');
