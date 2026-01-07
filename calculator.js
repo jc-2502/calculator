@@ -77,8 +77,8 @@ function addEventListenersToButtons() {
 }
 
 function addKeyboardEventListeners() {
-  const keydownHandlers = [handleDigitKey, handleBackKey];
-  const keyupHandlers = [handleOperatorKey, handleDecimalKey, handleEqualsKey, handleClearKey];
+  const keydownHandlers = [handleDigitKey, handleBackKey, handleEqualsKey];
+  const keyupHandlers = [handleOperatorKey, handleDecimalKey, handleClearKey];
   keydownHandlers.forEach(handler => document.addEventListener('keydown', handler));
   keyupHandlers.forEach(handler => document.addEventListener('keyup', handler));
 }
@@ -215,7 +215,9 @@ function handleEqualsKey(event) {
     // prevent pressing enter from activating last clicked button again
     event.preventDefault();
 
-    handleEquals();
+    if (!event.repeat) {
+      handleEquals();
+    }
   }
 }
 
