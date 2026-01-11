@@ -329,6 +329,9 @@ function updateNumberDisplay(value, shorten = true) {
         }
         // parseFloat handles scientific notation for exponents of -7 or lower
         // (6 0s before first significant digit)
+    } else if (value % 1 === 0) {
+      value = parseFloat(value)
+      // remove entered 0s after decimal
     }
   }
 
@@ -374,6 +377,9 @@ function shortenOperationPart(value) {
         }
         // parseFloat handles scientific notation for exponents of -7 or lower
         // (6 0s before first significant digit)
+    } else if (value % 1 === 0) {
+      value = parseFloat(value)
+      // remove entered 0s after decimal
     }
   }
 
