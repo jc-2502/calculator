@@ -183,6 +183,8 @@ function getOperatorSymbol(operator) {
 }
 
 function handleOperator(operatorWord) {
+  updateNumberDisplay('');
+
   if (num2String) {
     updateOperationDisplay(num2String);
   }
@@ -193,8 +195,6 @@ function handleOperator(operatorWord) {
     const result = operate();
     updateOperationDisplay(result, operatorSymbol);
   } else if (num1String !== '' && num2String === '') {
-    updateNumberDisplay('');
-
     if (operationParts.at(-1) === num1String) {
       // clear clears result from number display and adds in operation display
       updateOperationDisplay(operatorSymbol);
@@ -202,7 +202,6 @@ function handleOperator(operatorWord) {
       updateOperationDisplay(num1String, operatorSymbol);
     }
   } else if (num1String === '' && num2String !== '') {
-    updateNumberDisplay('');
     updateOperationDisplay(operatorSymbol);
     updateNum1AndNum2Strings(num2String, '');
   }
@@ -317,6 +316,7 @@ function updateNumberDisplay(value, shorten = true) {
       // if value has decimals
         if (value > 1) {
           value = parseFloat(Number(value).toPrecision(14));
+          // parseFloat removes added trailing 0s
         } else if (value < -1) {
           value = parseFloat(Number(value).toPrecision(13));
           // - and 13 significant digits
@@ -368,6 +368,7 @@ function shortenOperationPart(value) {
       // if value has decimals
         if (value > 1 || value < -1) {
           value = parseFloat(Number(value).toPrecision(16));
+          // parseFloat removes added trailing 0s
         } else if (value > 0 || value < 0) {
           value = parseFloat(Number(value).toFixed(16));
         }
