@@ -303,16 +303,16 @@ function updateNumberDisplay(value, shorten = true) {
   const numberDisplay = document.querySelector('#number-display');
 
   if (shorten) {
-    if (value >= 1e14 || (value > 1e13 && value % 1 != 0)) {
+    if (value >= 1e14 || (value > 1e13 && value % 1 !== 0)) {
       // if value is 15 or more digits, or 14 'integer part' digits before decimal,
       // express as scientific notation with 9 decimals i.e. #.#########e+##
       // (display fits 14 chars)
       value = Number(value).toPrecision(10);
-    } else if (value <= -1e13 || (value < -1e12 && value % 1 != 0)) {
+    } else if (value <= -1e13 || (value < -1e12 && value % 1 !== 0)) {
       // if negative value is 14 or more digits, or 13 'integer part' digits before decimal,
       // express as scientific notation with 8 decimals i.e. -#.########e+##
       value = Number(value).toPrecision(9);
-    } else if (value % 1 != 0) {
+    } else if (value % 1 !== 0) {
       // if value has decimals
         if (value > 1) {
           value = parseFloat(Number(value).toPrecision(14));
@@ -358,16 +358,16 @@ function updateOperationDisplay(...partsToAdd) {
 
 function shortenOperationPart(value) {
   if (!['+', '\u2212', '\u00d7', '\u00f7', '='].includes(value)) {
-    if (value >= 1e16 || (value > 1e15 && value % 1 != 0)) {
+    if (value >= 1e16 || (value > 1e15 && value % 1 !== 0)) {
       // if value is 17 or more digits, or 16 'integer part' digits before decimal,
       // express as scientific notation with 15 decimals i.e. #.###############e+##
       // (16 significant digits displayed with precision)
       value = Number(value).toPrecision(16);
-    } else if (value <= -1e16 || (value < -1e15 && value % 1 != 0)) {
+    } else if (value <= -1e16 || (value < -1e15 && value % 1 !== 0)) {
       // if negative value is 17 or more digits, or 16 'integer part' digits before decimal,
       // express as scientific notation with 15 decimals i.e. -#.###############e+##
       value = Number(value).toPrecision(16);
-    } else if (value % 1 != 0) {
+    } else if (value % 1 !== 0) {
       // if value has decimals
         if (value > 1 || value < -1) {
           value = parseFloat(Number(value).toPrecision(16));
